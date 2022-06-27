@@ -21,7 +21,7 @@ const sizes = {
 // texture 
 const repeat = 10
 const TextureLoader = new THREE.TextureLoader()
-const Batiment_1 = TextureLoader.load('/textures/Batiments/Batiment_1.jpeg')
+const Batiment_1 = TextureLoader.load('../static/textures/Batiments/Batiment_1.jpeg')
 const Batiment_2 = TextureLoader.load('/textures/Batiments/Batiment_2.jpeg')
 const Batiment_3 = TextureLoader.load('/textures/Batiments/Batiment_3.jpeg')
 const Batiment_4 = TextureLoader.load('/textures/Batiments/Batiment_4.jpeg')
