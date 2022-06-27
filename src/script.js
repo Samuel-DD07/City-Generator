@@ -24,7 +24,7 @@ const TextureLoader = new THREE.TextureLoader()
 const Batiment_1 = TextureLoader.load('../textures/Batiments/Batiment_1.jpeg')
 const Batiment_2 = TextureLoader.load('../textures/Batiments/Batiment_2.jpeg')
 const Batiment_3 = TextureLoader.load('../textures/Batiments/Batiment_3.jpeg')
-const Batiment_4 = TextureLoader.load('/..textures/Batiments/Batiment_4.jpeg')
+const Batiment_4 = TextureLoader.load('../textures/Batiments/Batiment_4.jpeg')
 
 Batiment_1.wrapS = Batiment_1.wrapT = THREE.RepeatWrapping; Batiment_1.repeat.set(repeat, repeat)
 Batiment_2.wrapS = Batiment_2.wrapT = THREE.RepeatWrapping; Batiment_2.repeat.set(repeat, repeat)
