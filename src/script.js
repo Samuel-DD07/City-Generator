@@ -36,8 +36,8 @@ const pr = {
     City_Size: 1,
     Batiment_size: new THREE.Vector3(0.5, 0.5, 1),
     ecart: 0.1,
-    HBatimentMini: 1, 
-    HBatimentMax: 2,
+    HBatimentMini: 0.5, 
+    HBatimentMax: 3,
     Quartier_Size: new THREE.Vector3(1, 1),
     tronc_size: 2,
     feuille_size: 0.25,
@@ -93,7 +93,9 @@ const generatorCity = () =>{
     const TabColorArbre = ['#6B8E23', '#228B22']
     const tabTextureBatiment = [Batiment_1, Batiment_2, Batiment_3, Batiment_4]
     
+
     // Quartier
+
     for (let colonne = 0; colonne < pr.City_Size; colonne+=pr.Quartier_Size.y) {
         for (let ligne = 0; ligne < pr.City_Size; ligne+=pr.Quartier_Size.x){
             let ColorContenu = TabContenuCity[ entierAleatoire(0, TabContenuCity.length -1 ) ]
@@ -117,12 +119,12 @@ const generatorCity = () =>{
                 for (let ligne = 0; ligne <= pr.Quartier_Size.x - pr.Batiment_size.x; ligne+=pr.Batiment_size.x) {
                     
                         pr.Batiment_size.z = entierAleatoire(pr.HBatimentMini, pr.HBatimentMax)
-                        const TextureBatiment = tabTextureBatiment[ entierAleatoire(0, tabTextureBatiment.length - 1) ]
+                        let TextureBatiment = tabTextureBatiment[ entierAleatoire(0, tabTextureBatiment.length - 1) ]
 
                         Geometry = new THREE.BoxGeometry(pr.Batiment_size.x - pr.ecart, pr.Batiment_size.y - pr.ecart, pr.Batiment_size.z)
                         Material = new THREE.MeshStandardMaterial({ map: TextureBatiment })
                         
-                        const Immeuble = new THREE.Mesh(Geometry, Material)
+                        let Immeuble = new THREE.Mesh(Geometry, Material)
                         Immeuble.position.x = - (pr.Quartier_Size.x/2 - pr.Batiment_size.x/2) + ligne
                         Immeuble.position.y = - (pr.Quartier_Size.y/2 - pr.Batiment_size.y/2) + colonne
                         Immeuble.position.z = pr.Batiment_size.z/2
@@ -135,27 +137,26 @@ const generatorCity = () =>{
             } 
             else if (ColorContenu == 'Green'){
                 // Park 
-                const Park = new THREE.Group()
-                var ColorContenuArbre = TabColorArbre[ entierAleatoire(0, TabColorArbre.length - 1) ]
+                let Park = new THREE.Group()
+                let ColorContenuArbre = TabColorArbre[ entierAleatoire(0, TabColorArbre.length - 1) ]
                 pr.tronc_size =  entierAleatoire(1, pr.tronc_size)
 
                 Geometry = new THREE.BoxGeometry(0.1, 0.1, pr.tronc_size)
                 Material = new THREE.MeshStandardMaterial({ color: '#614b3a'})
                 
-                const Tronc = new THREE.Mesh(Geometry, Material) 
-
+                let Tronc = new THREE.Mesh(Geometry, Material) 
 
                 Geometry = new THREE.SphereGeometry(pr.feuille_size, 20, 20)
                 Material = new THREE.MeshStandardMaterial({ color: ColorContenuArbre})
                 
-                const Feuille = new THREE.Mesh(Geometry, Material)
+                let Feuille = new THREE.Mesh(Geometry, Material)
 
                 for (let i = 0; i < pr.nombreBuisson; i++) {
-                    var ColorContenuArbre = TabColorArbre[ entierAleatoire(0, TabColorArbre.length - 1) ]
+                    let ColorContenuArbre = TabColorArbre[ entierAleatoire(0, TabColorArbre.length - 1) ]
 
                     Geometry = new THREE.SphereGeometry(pr.buisson_size, 20, 20)
                     Material = new THREE.MeshStandardMaterial({ color: ColorContenuArbre})
-                    const Buisson = new THREE.Mesh(Geometry, Material)
+                    let Buisson = new THREE.Mesh(Geometry, Material)
                     
                     Buisson.position.x = Math.cos(Math.random() * i)/Math.PI
                     Buisson.position.y = Math.sin(Math.random() * i)/Math.PI
@@ -214,7 +215,7 @@ const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
 
-    camera.position.z = Math.log(pr.City_Size * 2) * 5
+    camera.position.z = Math.log(pr.City_Size * 2) * 7
 
     City.rotation.z = Math.PI * elapsedTime / 10
 
